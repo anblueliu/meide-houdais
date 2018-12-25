@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html>
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>美的海报</title>
+    <link rel="stylesheet" href="PUBLIC_ADMIN/poster/Style/poster.css?v=12544">
+    <link href="PUBLIC_ADMIN/poster/Script/zui/css/zui.min.css?v=123" rel="stylesheet">
+    <link rel="stylesheet" href="PUBLIC_ADMIN/poster/Style/spectrum.css?v=12544">
+    <link href="PUBLIC_ADMIN/poster/Script/zui/lib/colorpicker/zui.colorpicker.min.css?v=123" rel="stylesheet">
+    <!-- <script src="PUBLIC_ADMIN/poster/js.js"></script> -->
+    <script src="PUBLIC_ADMIN/poster/Script/jquery.min.js"></script>
+    <script src="PUBLIC_ADMIN/poster/Script/template-web.js"></script>
+    <script src="PUBLIC_ADMIN/poster/Script/spectrum.js"></script>
+    <script src="PUBLIC_ADMIN/poster/Script/zui/js/zui.min.js"></script>
+    <script src="PUBLIC_ADMIN/poster/Script/zui/lib/uploader/zui.uploader.min.js"></script>
+    <script src="PUBLIC_ADMIN/poster/Script/zui/lib/colorpicker/zui.colorpicker.js"></script>
+    <script src="PUBLIC_ADMIN/poster/Script/behavior.js"></script>
+</head>
+<style>
+    .uploader-files{
+        display:none;
+    }
+</style>
+<body >
+<div class="poster-hend">
+    <!-- |素材库 -->
+    <div class="poster-l">
+        <input type="hidden" value="{$poster_id}" class="poster_id">
+        <p>发布后素材将同步至小程序提供使用</p>
+        <div class="poster-material">
+            <label>素材库</label>
+            <div class="Add-subtract">
+                <span type="button" onclick="_lirdel()">-</span>
+                <span type="button" id="test1" ><button class="uploader-btn-browse" style="border:1px solid #ffffff; background-color: #ffffff;color:#d7d7d7;">+</button></span>
+            </div>
+        </div>
+        <!--<span id="test11" ><button class="uploader-btn-browse">上传素材 </button></span>-->
+        <div class="pos-library">
+            <div class="scroll-material adds">
+
+            </div>
+            <div class="uplode-btn-add  lir-on">
+                <button class="btn btn-sm btn-info " type="button" id="test11"><span class="uploader-btn-browse">上传素材</span></button>
+            </div>
+        </div>
+        <div class="poster-del">
+            <button class="btn pos-edi-btn" type="button">删除</button>
+        </div>
+
+        <!-- |logo库 -->
+        <div class="poster-material pos-logo">
+            <label>Logo库</label>
+            <span type="button" id="test2" ><button class="uploader-btn-browse" style="border:1px solid #ffffff; background-color: #ffffff;color:#d7d7d7;" >+</button></span>
+        </div>
+        <div class="pos-library logo-content">
+            <div class="scroll-material logo-content-page" id="logo">
+
+
+            </div>
+            <div class="uplode-btn-add  logo-on">
+               <button class="btn btn-sm btn-info " type="button" id="test22"><span class="uploader-btn-browse">上传素材</span></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="poster-the">
+        <div class="pos-com-tex-pos">
+            <div class="poster-pos">  
+                <!--编辑海报-->
+                <div class="pos-editor">
+                    <div style="height:710px;width:95%;background-color:#ffffff;">
+                        <div class="pos-img" style="box-shadow: 0px 4px 15px rgba(0,0,0,0.5);overflow-y:overlay;">
+                            <!-- 背景图 750/1200 或者比例-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div >
+            
+            <!--选择文本-->
+            <div class="poster-reversing">
+                <img src="PUBLIC_ADMIN/poster/img/tt.png">
+                <div class="btn-group" style="margin-left: 17px;">
+                    <button type="button" class="btn dropdown-toggle btn-xs"  data-toggle="dropdown">文本框 <span class="caret"></span></button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a class="addtext" href="JavaScript:void(0);">横向文本框</a></li>
+                        <li><a class="addtext"  href="JavaScript:void(0);">竖向文本框</a></li>
+                    </ul>
+                </div>
+            </div>
+             <!--文字样式-->
+            <div class="hei" style="margin-top: 15px;">
+                <div class="poster-text-style" datas="" >
+                    <div class="pos-texdd">
+                        <label style="width: 40px;">名称</label>
+                        <input type="text" name="name" class="name" value="{$name}" style="width:130px">
+                    </div>
+                    <div class="pos-texdd" style="margin-top: 15px;">
+                        <label style="width: 40px;">字体</label>
+                        <select class="poster-text" style="width:130px;">
+                            <?php foreach($font_family as $vv): ?>
+                            <option value="{$vv['english_name']}" data-url="{$vv['url']}">{$vv['chinese_name']}</option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+
+
+                    <div class="pos-size" style="margin-top: 15px;">
+                        <label  style="width: 40px;">大小</label>
+                        <input  class="poskey"  type="number" style="width:37%;height: 20px;" value="13"/>
+                        <select class="poster-text" style="width: 21px;">
+                            <option value="13">请选择</option>
+                            <option value="13"> 13px </option>
+                            <option value="14"> 14px </option>
+                            <option value="15"> 15px </option>
+                            <option value="16"> 16px </option>
+                            <option value="17"> 17px </option>
+                            <option value="18"> 18px </option>
+                            <option value="19"> 19px </option>
+                            <option value="20"> 20px </option>
+                            <option value="21"> 21px </option>
+                            <option value="22"> 22px </option>
+                            <option value="23"> 23px </option>
+                            <option value="24"> 24px </option>
+                            <option value="21"> 25px </option>
+                            <option value="22"> 26px </option>
+                            <option value="23"> 30px </option>
+                            <option value="24"> 35px </option>
+                        </select>
+                      
+                    </div>
+                    <div class="pos-color" style="margin-top: 15px;">
+                        <label  style="width: 40px;">颜色</label>
+
+                        <input type="text"  id="myColor3" value="#3280fC" data-icon="tint" >
+                    </div>
+
+                    <div class="pos-sorting" style="margin-top: 15px;">
+                        <label style="width: 40px;">排序</label>
+                        <span><i class="icon icon-align-left" id="l"></i><i class="icon icon-align-justify" id="c"></i><i class="icon icon-align-left  icon-flip-horizontal" id="r"></i></span>
+                    </div>
+
+                    <div class="pos-kerning" style="margin-top: 15px;">
+                        <label  style="width: 40px;float: left;">字距</label>
+                        <input type="number" class="poskey"  style="width:22%;height: 20px;float: left;" value="1"/>
+                        <select class="poster-text" style="width: 21px;">
+                            <option value="1">请选择</option>
+                            <option value="1">1px</option>
+                            <option value="1.5">1.5px</option>
+                            <option value="2">2px</option>
+                            <option value="2.5">2.5px</option>
+                            <option value="3">3px</option>
+                            <option value="3.5">3.5px</option>
+                            <option value="4">4px</option>
+                            <option value="4.5">4.5px</option>
+                            <option value="5">5px</option>
+                            <option value="5.5">5.5px</option>
+                            <option value="6">6px</option>
+                            <option value="6.5">6.5px</option>
+                            <option value="7">7px</option>
+                            <option value="7.5">7.5px</option>
+                        </select>
+                    </div>
+
+
+                    <div class="pos-spacing" style="margin-top: 15px;">
+                        <label  style="width: 40px;float: left;">行距</label>
+                        <input type="number" class="poskey"  style="width:22%;height: 20px;float: left;" value="20"/>
+                        <select class="poster-text" style="width: 21px;">
+                            <option value="20">请选择</option>
+                            <option value="20">20</option>
+                            <option value="22">22</option>
+                            <option value="24">24</option>
+                            <option value="26">26</option>
+                            <option value="28">28</option>
+                            <option value="30">30</option>
+                            <option value="32">32</option>
+                            <option value="34">34</option>
+                            <option value="36">36</option>
+                            <option value="34">37</option>
+                            <option value="36">38</option>
+                            <option value="34">39</option>
+                            <option value="36">40</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="poster-r">
+                <button class="btn btn-block release-button"  type="button">发布</button>
+                <button class="btn save-button" type="button">保存</button>
+                <button class="btn del-button" type="button" style="float: right;" onclick="member_del(this,'<?php echo $poster_id; ?>')">删除</button>
+            </div>
+        </div>    
+</div>
+</body>
+</html>
+<!--素材库-->
+<script id="library-tem" type="text/html">
+    <ul >
+        {{each $data as d}}
+        <li class="img-droppable" >
+            <img src="{{d.url}}" class="img-img" data-tags="{{d.tags}}" data-type="{{d.type}}"/>
+            {{if d.text!=null}}
+            <div class="pos-icon" onclick="_del(this)">
+                <i class="icon icon-times"></i>
+            </div>
+
+            <div class="radio">
+                <label>
+                    <input type="radio"  onclick="_radio(this)">
+                    {{d["text"]}}
+                </label>
+            </div>
+            {{/if}}
+            <input class="pos-hid" type="hidden" value="{{d.tags}}" />
+        </li>
+        {{/each}}
+    </ul>
+
+</script>
+<link rel="stylesheet" href="PUBLIC_ADMIN/lib/layui/css/layui.css">
+<script type="text/javascript" src="PUBLIC_ADMIN/lib/layui/layui.js" charset="utf-8"></script>
+
+<script>   
+        $("#myColor3").spectrum({
+            allowEmpty:true,//允许为空,显示清楚颜色按钮
+            color: "#ffffff",//初始化颜色
+            showInput: true,//显示输入
+            containerClassName: "full-spectrum",
+            showInitial: true,//显示初始颜色,提供现在选择的颜色和初始颜色对比
+            showPalette: true,//显示选择器面板
+            showSelectionPalette: true,//记住选择过的颜色
+            showAlpha: true,//显示透明度选择
+            maxPaletteSize: 7,//记住选择过的颜色的最大数量
+            preferredFormat: "hex",//输入框颜色格式,(hex十六进制,hex3十六进制可以的话只显示3位,hsl,rgb三原色,name英文名显示)
+            move: function(color){
+                //选择器右边面板移动时触发
+                $("#myColor3").val(color.toHexString());
+            },
+            palette: [
+                ["rgb(47, 47, 47)", "rgb(255, 255, 255)", "rgb(203, 203,203)", /*"rgb(153, 153, 153)","rgb(51, 51, 51)",*/
+                    "rgb(0, 0,0)", "rgb(154,19,17)", /*"rgb(154, 51, 17)", "rgb(155,100, 21)",*/ "rgb(51, 101, 21)"],
+                ["rgb(21, 101, 153)", "rgb(15, 52, 100)", "rgb(254,0, 23)", "rgb(255, 102, 51)", "rgb(255, 255, 17)",
+                    "rgb(100, 254, 19)", "rgb(21, 151, 255)", "rgb(50, 101, 253)", "rgb(130, 9, 204)", "rgb(229, 15, 68)"],
+                ["rgb(251,203, 151)", "rgb(53, 203, 154)", "rgb(100,204, 255)", "rgb(103, 101, 255)", "rgb(213, 102,255)",
+                "rgb(255, 204,203)", "rgb(255,254, 204)", "rgb(153, 255, 204)", "rgb(201, 254,255)", "rgb(203, 204, 254)"],
+                ["rgb(203, 154, 254)", "rgb(254, 101, 201)", 
+　　　　"rgb(166, 28, 0)", "rgb(204, 0, 0)", "rgb(230, 145, 56)", "rgb(241, 194, 50)", "rgb(106, 168, 79)",
+　　　　"rgb(69, 129, 142)", "rgb(60, 120, 216)", "rgb(61, 133, 198)", "rgb(103, 78, 167)", "rgb(166, 77, 121)",
+　　　         ]
+            ]
+        });
+</script>
+<script>
+    layui.use('layer', function(){
+        $ = layui.jquery;//jquery
+    });
+
+         var url ="https://haitian.wwgxkj.com/Public/Uploads/poster/"+"{$bg_url}"
+         var img = new Image();
+         img.src = url;
+         img.onerror = function(){
+            alert(name+" 背景图片加载失败，请检查url是否正确");
+         return false;
+         };
+        if(img.complete){
+            if( $(".pos-img>img")!=""){
+                _tp();
+            }
+        }else{
+            img.onload = function(){               
+                _tp();
+              img.onload=null;//避免重复加载
+            }
+        }
+
+     //背景tu   
+    function _tp(){
+           var mul = img.height/img.width;           
+            var h= 375*mul;             
+            img.style.height = h+"px";
+            img.setAttribute('class','bghaibu')          
+            var pos = document.querySelector(".pos-img");
+            pos.appendChild(img)
+    }
+    var poster_id =$('.poster_id').val();
+    $('#test1').uploader({
+        autoUpload: true,            // 当选择文件后立即自动进行上传操作
+        url: '__MODULE__/Poster/uploadMaterial?poster_id='+poster_id,  // 文件上传提交地址
+        onUploadComplete: function(file) {
+            console.log(file.length)
+            console.log(file)
+            if(file[file.length-1]['remoteData']){
+                var lirdata =file[file.length-1]['remoteData'];
+                var d= lirdata
+                console.log(lirdata)
+                var htm = template("library-tem", d);
+                $(".adds").html(htm);
+                if(lirdata==""){
+                    $(".lir-on").css("display","block");
+                }else{
+                    $(".lir-on").css("display","none");
+                }
+                _box()
+            }
+        }
+    });
+    var poster_id =$('.poster_id').val();
+    $('#test11').uploader({
+        autoUpload: true,            // 当选择文件后立即自动进行上传操作
+        url: '__MODULE__/Poster/uploadMaterial?poster_id='+poster_id,  // 文件上传提交地址
+        onUploadComplete: function(file) {
+            console.log(file.length)
+            console.log(file)
+            if(file[file.length-1]['remoteData']){
+                var lirdata =file[file.length-1]['remoteData'];
+                var d= lirdata
+                console.log(lirdata)
+                var htm = template("library-tem", d);
+                $(".adds").html(htm);
+                if(lirdata==""){
+                    $(".lir-on").css("display","block");
+                }else{
+                    $(".lir-on").css("display","none");
+                }
+                _box()
+            }
+        }
+    });
+    $('#test2').uploader({
+        autoUpload: true,            // 当选择文件后立即自动进行上传操作
+        url: '__MODULE__/Poster/uploadLogo',  // 文件上传提交地址
+        onUploadComplete: function(file) {
+            console.log(file.length)
+            console.log(file)
+            if(file[file.length-1]['remoteData']){
+                var logodata =file[file.length-1]['remoteData'];
+                var d= logodata
+                var htmlog = template("library-tem", d);
+                $("#logo").html(htmlog);
+                if(logodata==""){
+                    $(".logo-on").css("display","block");
+                }else{
+                    $(".logo-on").css("display","none");
+                }
+                _box()
+            }
+        }
+    });
+    $('#test22').uploader({
+    autoUpload: true,            // 当选择文件后立即自动进行上传操作
+    url: '__MODULE__/Poster/uploadLogo',  // 文件上传提交地址
+    onUploadComplete: function(file) {
+        console.log(file.length)
+        console.log(file)
+        if(file[file.length-1]['remoteData']){
+            var logodata =file[file.length-1]['remoteData'];
+            var d= logodata
+            var htmlog = template("library-tem", d);
+            $("#logo").html(htmlog);
+            if(logodata==""){
+                $(".logo-on").css("display","block");
+            }else{
+                $(".logo-on").css("display","none");
+            }
+            _box()
+        }
+    }
+});
+    //素材删除
+    $('.pos-edi-btn').click(function () {
+        var poster_id =$('.poster_id').val();
+        var temp = []
+        $(".checked11").each(function(){
+            //console.log($(this).children('img').data('tags'))
+            temp.push($(this).children('img').data('tags'))
+        });
+        if(temp.length==0){
+            alert('至少选择一张图片')
+        }else{
+            $.post("{:U('Poster/deleteMaterial')}",{arr:temp,poster_id:poster_id},function (res) {
+                if(res.code==-1){
+                    alert(res.msg)
+                }else{
+                    var lirdata =res;
+                    var d= lirdata
+                    var htmlog = template("library-tem", d);
+                    $(".adds").html(htmlog);
+                    if(lirdata==""){
+                        $(".lir-on").css("display","block");
+                    }else{
+                        $(".lir-on").css("display","none");
+                    }
+                    _box()
+                }
+       
+
+            })
+        }
+    })
+    //
+    function _del(d) {
+
+        //$(d)
+
+        //console.log($(d).siblings(".img-img").attr("data-tags"))
+        var poster_id =$('.poster_id').val();
+        var id = $(d).siblings(".img-img").attr("data-tags");
+        $.post("{:U('Poster/deleteMaterial1')}",{id:id,poster_id:poster_id},function (res) {
+            if(res.code==-1){
+                alert(res.msg)
+            }else{
+                var lirdata =res;
+                var d= lirdata
+                var htmlog = template("library-tem", d);
+                $(".adds").html(htmlog);
+                if(lirdata==""){
+                    $(".lir-on").css("display","block");
+                }else{
+                    $(".lir-on").css("display","none");
+                }
+                _box()
+            }
+           
+        })
+       
+    }
+
+    //海报保存
+    $('.save-button').click(function () {
+
+        var photosarr = []
+        var textarr = []
+        //save=true 保存 save=false发布
+        var save =1;
+
+        //图片
+        $('.posdrags').each(function () {
+            var data ={
+                width:$(this)[0].offsetWidth,
+                height:$(this)[0].offsetHeight,
+                top:$(this)[0].offsetTop,
+                left:$(this)[0].offsetLeft,
+                d_id:$(this).children().children('img')[0].getAttribute('data-id'),
+                d_tags:$(this).children().children('img')[0].getAttribute('data-tags'),
+                type:$(this).children().children('img')[0].getAttribute('data-type'),
+                src:$(this).children().children('img')[0].src
+            }
+            photosarr.push(data)
+        })
+        //文字
+        $('.pos-tex').each(function () {
+            //console.log($(this).parent());
+
+
+            var type = $(this).children()[0].getAttribute('data-type');
+            var num = $(this).children()[0].getAttribute('data-num');
+            //垂直
+            if(type==2){
+                var tempstring = $(this).children()[0].getAttribute('style').split(';');
+                var tempstring1= $(this)[0].getAttribute('style').split(';');
+                console.log('---------垂直--------')
+              console.log(tempstring)
+              console.log(tempstring1)
+                var data ={
+                    detail:$.trim($('textarea[name="text'+num+'"]').val()),
+                    text_align:$.trim(tempstring[4].split(':')[1]),
+                    width:parseFloat(tempstring1[1].split(':')[1]),
+                    height:parseFloat(tempstring1[2].split(':')[1]),
+                    color:$.trim(tempstring[10].split(':')[1]),
+                    font_size:parseInt(tempstring[5].split(':')[1]),
+                    font_family:$.trim(tempstring[6].split(':')[1]),
+                    top: parseFloat($(this).parent()[0].offsetTop),
+                    left: parseFloat($(this).parent()[0].offsetLeft),
+                    type:parseInt(type),
+                    num:parseInt(num),
+                }
+
+            }else if(type==1){
+                var tempstring = $(this).children()[0].getAttribute('style').split(';');
+                var tempstring1= $(this)[0].getAttribute('style').split(';');
+                console.log('---------水平--------')
+                console.log(tempstring)
+              console.log(tempstring1)
+                //水平
+                var data ={
+                    detail:$.trim($("textarea[name='text"+num+"']").val()),
+                    text_align:$.trim(tempstring[4].split(':')[1]),
+                    width:parseFloat(tempstring1[1].split(':')[1]),
+                    height:parseFloat(tempstring1[2].split(':')[1]),
+                    color:$.trim(tempstring[10].split(':')[1]),
+                    font_size:parseInt(tempstring[5].split(':')[1]),
+                    font_family:$.trim(tempstring[6].split(':')[1]),
+                    top: parseFloat($(this).parent()[0].offsetTop),
+                    left: parseFloat($(this).parent()[0].offsetLeft),
+                    type:parseInt(type),
+                    num:parseInt(num),
+                }
+            }
+            
+           // console.log(data)
+           // return 
+            textarr.push(data)
+
+
+        })
+
+        var poster_id =$('.poster_id').val();
+        var name =$.trim($("input[name='name']").val());
+        $.post("{:U('Poster/savePoster')}",{photosarr:photosarr,textarr:textarr,poster_id:poster_id,save:save,name:name},function (res) {
+            alert(res.msg)
+        })
+
+
+    })
+
+    //发布
+    $('.release-button').click(function (){
+        //先保存，在生成图片
+        var photosarr = []
+        var textarr = []
+        //save=1 保存 save=2发布
+        var save =2;
+        //图片
+        $('.posdrags').each(function () {
+            var data ={
+                width:$(this)[0].offsetWidth,
+                height:$(this)[0].offsetHeight,
+                top:$(this)[0].offsetTop,
+                left:$(this)[0].offsetLeft,
+                d_id:$(this).children().children('img')[0].getAttribute('data-id'),
+                d_tags:$(this).children().children('img')[0].getAttribute('data-tags'),
+                type:$(this).children().children('img')[0].getAttribute('data-type'),
+                src:$(this).children().children('img')[0].src
+            }
+            photosarr.push(data)
+        })
+        //文字
+        $('.pos-tex').each(function () {
+            //console.log($(this).parent());
+
+
+            var type = $(this).children()[0].getAttribute('data-type');
+            var num = $(this).children()[0].getAttribute('data-num');
+            console.log( $(this).children()[0])
+            console.log( num)
+            console.log('-------------------------------------')
+            //垂直
+           
+            if(type==2){
+                var tempstring = $(this).children()[0].getAttribute('style').split(';');
+                var tempstring1= $(this)[0].getAttribute('style').split(';');
+                console.log('---------垂直--------')
+              console.log(tempstring)
+              console.log(tempstring1)
+                var data ={
+                    detail:$.trim($('textarea[name="text'+num+'"]').val()),
+                    text_align:$.trim(tempstring[4].split(':')[1]),
+                    width:parseFloat(tempstring1[1].split(':')[1]),
+                    height:parseFloat(tempstring1[2].split(':')[1]),
+                    color:$.trim(tempstring[10].split(':')[1]),
+                    font_size:parseInt(tempstring[5].split(':')[1]),
+                    font_family:$.trim(tempstring[6].split(':')[1]),
+                    top: parseFloat($(this).parent()[0].offsetTop),
+                    left: parseFloat($(this).parent()[0].offsetLeft),
+                    type:parseInt(type),
+                    num:parseInt(num),
+                }
+
+            }else if(type==1){
+                var tempstring = $(this).children()[0].getAttribute('style').split(';');
+                var tempstring1= $(this)[0].getAttribute('style').split(';');
+                console.log('---------水平--------')
+                console.log(tempstring)
+              console.log(tempstring1)
+                //水平
+                var data ={
+                    detail:$.trim($("textarea[name='text"+num+"']").val()),
+                    text_align:$.trim(tempstring[4].split(':')[1]),
+                    width:parseFloat(tempstring1[1].split(':')[1]),
+                    height:parseFloat(tempstring1[2].split(':')[1]),
+                    color:$.trim(tempstring[10].split(':')[1]),
+                    font_size:parseInt(tempstring[5].split(':')[1]),
+                    font_family:$.trim(tempstring[6].split(':')[1]),
+                    top: parseFloat($(this).parent()[0].offsetTop),
+                    left: parseFloat($(this).parent()[0].offsetLeft),
+                    type:parseInt(type),
+                    num:parseInt(num),
+                }
+            }
+
+            textarr.push(data)
+
+
+        })
+        //console.log(textarr)
+        //return
+        var poster_id =$('.poster_id').val();
+        var name =$.trim($("input[name='name']").val());
+        $.ajax({
+            url: "{:U('Poster/savePoster')}",
+            type: 'POST', //GET
+            async: true,    //或false,是否异步
+            data: {
+                photosarr:photosarr,
+                textarr:textarr,
+                poster_id:poster_id,
+                save:save,
+                name:name
+            },
+            timeout: 50000,
+            dataType: 'json',
+
+            beforeSend: function () {
+
+                showloading(true);
+            },
+
+        success: function (data, textStatus, jqXHR) {
+            showloading(false);
+            layer.msg(data.msg);
+            if (data.status === 0) {
+                layer.msg(data.msg);
+                layer.msg("已催促工厂加工");
+                window.location.reload();
+            }
+        }
+
+    });
+
+//        $.post("{:U('Poster/savePoster')}",{photosarr:photosarr,textarr:textarr,poster_id:poster_id,save:save},function (res) {
+//            alert(res.msg)
+//            console.log(res)
+//            //window.location.href='poster/index'
+//
+//            window.parent.location.reload();
+//            var index = parent.layer.getFrameIndex(window.name);
+//            parent.layer.close(index);
+//        })
+    })
+
+    //删除
+//    $('.del-button').click(function () {
+//
+//        var poster_id =$('.poster_id').val();
+//        $.post("{:U('Poster/deletePoster')}",{poster_id:poster_id},function (res) {
+//            alert(res.msg)
+//            window.parent.location.reload();
+//            var index = parent.layer.getFrameIndex(window.name);
+//            parent.layer.close(index);
+//        })
+//
+//    })
+    function member_del(obj,id){
+        layer.confirm('确认要删除吗？',function(index){
+            $.ajax({
+                type:"get",
+                data:{'id':id},
+                url:'__MODULE__/Poster/deletePoster',
+                dataType:'json',
+                success:function(json){
+
+                    if (json.code == 1) {
+                        //发异步删除数据
+//                        $(obj).parents("tr").remove();
+                        layer.msg('已删除!',{icon:1,time:1000});
+                        history.back()
+//                        var index = parent.layer.getFrameIndex(window.name);
+//                        if(index){
+//                            parent.layer.close(index);
+//                            window.parent.location.reload();
+//                        }
+
+                    }
+                }
+            });
+
+        });
+    }
+    function showloading(t) {
+        if (t) {
+            loading = layer.load(1, {
+                shade: [0.1, '#fff']
+            });
+        } else {
+
+            layer.closeAll('loading');
+        }
+
+    }
+
+
+
+
+
+
+</script>
